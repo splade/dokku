@@ -21,7 +21,7 @@ copyfiles: addman
 addman:
 	mkdir -p /usr/local/share/man/man1
 	cp dokku.1 /usr/local/share/man/man1/dokku.1
-	mandb
+	makewhatis -u
 
 version:
 	git describe --tags > ${DOKKU_ROOT}/VERSION  2> /dev/null || echo '~${DOKKU_VERSION} ($(shell date -uIminutes))' > ${DOKKU_ROOT}/VERSION
