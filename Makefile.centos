@@ -39,15 +39,15 @@ sshcommand:
 pluginhook:
 	#TODO(alex) add EPEL repository before
 	yum install -y dpkg.x86_64
+  #TODO(alex) create all missing
+  # dirs:  /var/lib/dpkg /var/lib/dpkg/info /var/lib/dpkg/updates/
+  # files: /var/lib/dpkg/available /var/lib/dpkg/status /usr/local/bin/update-rc.d (!!!)
 	wget -qO /tmp/pluginhook_0.1.0_amd64.deb ${PLUGINHOOK_URL}
 	dpkg -i /tmp/pluginhook_0.1.0_amd64.deb
 
 docker:
 	egrep -i "^docker" /etc/group || groupadd docker
 	usermod -aG docker dokku
-	#curl https://get.docker.io/gpg | apt-key add -
-	#echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
-	#apt-get update
 ifdef DOCKER_VERSION
 	echo "Not sure ERPL support this"
 	#apt-get install -y lxc-docker-${DOCKER_VERSION}
